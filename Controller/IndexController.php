@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-use Model\MessageModel;
+use Model\ContactModel;
 use Model\NewsModel;
 
 
@@ -13,10 +13,9 @@ class IndexController extends BaseController
 
     public function index()
     {
-        $carousel=new NewsModel();
-        $this->data['carousel']=$carousel->carousel();
-        $this->data['price'] = '340 $';
-        $this->data['siteName'] = SITE_NAME;
+        $main=new NewsModel();
+        $this->data['carousel']=$main->carousel();
+        $this->data['mainNews']=$main->mainNews();
         $this->render('main');
     }
 
@@ -25,7 +24,7 @@ class IndexController extends BaseController
         $this->message;
         /*adding massege */
         if ($_POST){
-            $message=new MessageModel();
+            $message=new ContactModel();
             $message->save($_POST);
             $this->message ='Thank U for your message!';
         }

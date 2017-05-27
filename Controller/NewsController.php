@@ -4,47 +4,48 @@
 namespace Controller;
 
 
-use Lib\Pagination;
+use Common\Session;
+
+use Model\CommentModel;
 use Model\NewsModel;
 
 class NewsController extends BaseController
 {
     protected $model;
     protected $name = 'News';
-    public $itemPerPage=5;
-    public function __construct()
-    {
-        $this->model = new NewsModel();
-    }
+    protected $itemPerPage=6;
+    protected $view='news';
 
-    /**
-     * @param $id
-     */
 
-    public function category($id)
-    {
-        $page=isset($_GET['page'])? intval($_GET['page']):1;
-        $this->data['page']=new Pagination
-        ([
-            'itemsCount' => $this->model->getCountNews ( $id ),
-            'itemsPerPage' => $this->itemPerPage,
-            'currentPage' => $page
-        ]);
-        $getNews = $this->model->getNews($id, $page);
-        if (!$getNews) {
-            $this->render404();
-        }
-        $this->data['category'] = $getNews;
-        $this->render('news');
-    }
 
     public function item($id)
     {
-        $item = $this->model->item($id);
+        $id=intval($id);
+        $news=new NewsModel();
+        $item = $news->item($id);
+        $comment=new CommentModel();
         if (!$item) {
             $this->render404();
         }
+        self::Comment($id);
+        $this->data['comment']=$comment->getComment($id);
+
         $this->data['item'] = $item;
         $this->render('item');
     }
+
+    public function Comment($id)
+    {
+        if (isset($_POST)&& isset($_POST['message']))
+        {
+            $message=self::protect($_POST['message']);
+            if(strlen($message)>1) {
+                $userId = Session::get ( 'userId' );
+                $userId = isset( $userId ) ? $userId : false;
+                $comment = new CommentModel();
+                $comment->setComment ( $message, $id, $userId );
+            }
+        }
+    }
+
 }

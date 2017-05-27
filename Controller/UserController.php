@@ -13,83 +13,78 @@ class UserController extends BaseController
     protected $name = 'User';
     protected $message;
 
-    public function __construct()
+    public function __construct ()
     {
         $this->user = new UserModel();
     }
+
     /**
      *register new user
      *
      */
-    public  function register()
+    public function register ()
     {
 
-        if ($this->user->checkUser()) {
-            header('Location: /mySite/index');
+        if ($this->user->checkUser ()) {
+            header ( 'Location: /mySite/index' );
             return;
         }
-        if ($_POST) {
-            $_POST[ 'name' ] = self::protect($_POST[ 'name' ]);
-            $_POST[ 'pass' ] = self::protect($_POST[ 'pass' ]);
-            $_POST[ 'confirmPass' ] = self::protect($_POST[ 'confirmPass' ]);
-            $_POST[ 'email' ] = self::protect($_POST[ 'email' ]);
-        }
-        if ($_POST && $_POST[ 'name' ] && strlen($_POST[ 'name' ]) > 2 &&
-            $_POST && $_POST[ 'pass' ] && strlen($_POST[ 'pass' ]) > 5
-            && $_POST[ 'pass' ] === $_POST[ 'confirmPass' ]
+        if ($_POST && $_POST['name'] && strlen ( $_POST['name'] ) > 2 &&
+            $_POST && $_POST['pass'] && strlen ( $_POST['pass'] ) > 5
+            && $_POST['pass'] === $_POST['confirmPass']
         ) {
-            $this->user->email=$_POST['email'];
-            $authUser = $this->user->userValidate();
+            $name = self::protect ( $_POST['name'] );
+            $pass = self::protect ( $_POST['pass'] );
+            $email = self::protect ( $_POST['email'] );
 
-            if ($authUser[ 'email' ] == $_POST[ 'email' ]) {
+            $this->user->email = $email;
+            $authUser = $this->user->userValidate ();
+
+            if ($authUser['email'] == $email) {
                 $this->message = 'Такий емеіл вже існує ';
             } else {
-                $this->user->userName = $_POST[ 'name' ];
-                $this->user->pass = md5($_POST[ 'pass' ] . SALT);
-                $this->user->registration();
-                header('Location: /mySite/index');
+                $this->user->userName = $name;
+                $this->user->pass = md5 ( $pass . SALT );
+                $this->user->registration ();
+                header ( 'Location: /mySite/index' );
             }
         }
-        $this->render('register');
-
+        $this->render ( 'register' );
     }
 
-    public function login()
+    public function login ()
     {
 
-        if ($this->user->checkUser()) {
-            header('Location: /mySite/index');
+        if ($this->user->checkUser ()) {
+            header ( 'Location: /mySite/index' );
             return;
         }
-        if ($_POST && $_POST[ 'email' ] && $_POST[ 'pass' ]) {
-            $this->user->email = $_POST[ 'email' ];
-            $this->user->pass = md5($_POST[ 'pass' ] . SALT);
-            $res = $this->user->loginUser();
+        if ($_POST && $_POST['email'] && $_POST['pass']) {
+            $this->user->email = $_POST['email'];
+            $this->user->pass = md5 ( $_POST['pass'] . SALT );
+            $res = $this->user->loginUser ();
             if ($res) {
-
-                Session::set('isAdmin', $res[ 'is_admin' ]);
-                Session::set('user', $res[ 'name' ]);
-                if ($res[ 'is_admin' ]) {
-                    header('Location: /mySite/Admin/index');
+                Session::set('userId', $res['id']);
+                Session::set ( 'isAdmin', $res['is_admin'] );
+                Session::set ( 'user', $res['name'] );
+                if ($res['is_admin']) {
+                    header ( 'Location: /mySite/Admin/index' );
                     return;
                 } else {
-                    header('Location: /mySite/index');
+                    header ( "Location:". $_SERVER['HTTP_REFERER'] );
                     return;
                 }
             }
             $this->message = 'Повторіть спробу';
         }
-        $this->render('login');
+        $this->render ( 'login' );
     }
 
-    public static function logOut()
+    public static function logOut ()
     {
-        Session::destroy();
-        header('Location: /mySite/index');
+        Session::destroy ();
+        header ( 'Location: /mySite/index' );
     }
-
-
-
 
 
 }

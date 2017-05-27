@@ -24,10 +24,9 @@ class UserModel extends BaseModel
         $this->pass= $this->db->escape($this->pass);
         $this->userName= $this->db->escape($this->userName);
 
-        $sql = "INSERT INTO `user` SET email='{$this->email}',
+        $sql = "INSERT INTO `user` SET `email`='{$this->email}',
                                     `name`='{$this->userName}',
                                     pass='{$this->pass}'";
-
         return $this->db->query($sql);
     }
     /**
@@ -36,7 +35,7 @@ class UserModel extends BaseModel
     public  function userValidate()
     {
 
-        $sql = "select * from `user` where email = '{$this->email}' limit 1";
+        $sql = "SELECT * FROM `user` WHERE email = '{$this->email}' LIMIT 1";
         $result = $this->db->query($sql);
         if (isset($result[ 0 ])) {
             return $result[ 0 ];

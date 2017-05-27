@@ -1,4 +1,5 @@
-
+<h1>This is Register page</h1>
+<div class="col-xs-8 col-md-8 col-lg-8">
 <form role="form" method="post">
   <div class="form-group">
     <label for="inputLogin">Імейл адреса</label>
@@ -18,3 +19,4 @@
     </div>
   <button name="submit" type="submit" class="btn btn-default">Відправити</button>
 </form>
+</div>

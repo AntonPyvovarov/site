@@ -3,7 +3,7 @@
 namespace Model;
 
 
-class MessageModel extends BaseModel
+class ContactModel extends BaseModel
 {
     protected $table = 'messages';
 

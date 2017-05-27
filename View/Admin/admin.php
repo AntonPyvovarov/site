@@ -14,7 +14,7 @@
         <tr>
             <td><?php echo $category['id'] ?></td>
             <td>
-                <a class="" href="News/category/<?php echo $category['id'] ?>" role="button">
+                <a class="" href="Admin/news/<?php echo $category['id'] ?>" role="button">
                     <?php echo $category['category'] ?>
                 </a>
             </td>

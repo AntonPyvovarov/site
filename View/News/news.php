@@ -1,11 +1,11 @@
 <div class=" row ">
     <div class="page-header">
-        <h1><?php echo $data['category'][0]['category'] ?>
+        <h1><?php echo $data['news'][0]['category'] ?>
 
         </h1>
     </div>
-    <?php if ($data['category']) {
-        foreach ($data['category'] as $news) { ?>
+    <?php if ($data['news']) {
+        foreach ($data['news'] as $news) { ?>
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail ">
                     <p><?php echo $news['id'] ?></p>
@@ -31,7 +31,6 @@
     <ul class="pagination">
 <?php foreach ($data['page']->buttons as $button) :
     if ($button->isActive) : ?>
-
         <li>
             <a href="News/category/<?= $data['category'][0]['category_id'] ?>?page=<?= $button->page ?>">
                 <?= $button->text ?>

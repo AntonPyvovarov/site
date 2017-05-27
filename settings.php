@@ -1,6 +1,6 @@
 <?php
 define('SITE_DIR',__DIR__);
-define('SITE_NAME','APPLE STORE');
+define('SITE_NAME','Site');
 define('DS',DIRECTORY_SEPARATOR);
 define('DB_HOST','localhost');
 define('DB_USER','root');

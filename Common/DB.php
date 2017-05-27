@@ -29,7 +29,7 @@ public function query($sql){
     if(!$data) {
         return false;
     }
-    return $data;
+    return $data ;
 }
 
     /**
