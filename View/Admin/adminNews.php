@@ -6,28 +6,31 @@
             <td><?php echo $news['id'] ?></td>
             <td><?php echo $news['title'] ?></td>
             <td><?php echo $news['date'] ?></td>
-            <td><?php echo $news['raiting'] ?></td>
+            <td><a class="btn btn-warning" href="" role="button">Редагувати</a></td>
+            <td>
+                <form class="form-inline" role="form" method="post">
+                    <input type="hidden" name="action" value="deleteNews"/>
+                    <input type="hidden" name="id" value="<?php echo $news['id'] ?>"/>
+                    <button class="btn btn-danger" type="submit">Удалить</button>
+                </form>
+            </td>
         </tr>
     <?php } ?>
 </table>
-
-<hr/>
+<br>
 <nav>
     <ul class="pagination">
-        <?php foreach ($data['page']->buttons as $button) :
-            if ($button->isActive) : ?>
+        <?php foreach ($data['page']->buttons as $button) {
+            if ($button->isActive) { ?>
                 <li>
-                    <a href="News/category/<?= $data['category'][0]['category_id'] ?>?page=<?= $button->page ?>">
+                    <a href="Admin/news/<?php echo  $data['news'][0]['category_id'] ?>?page=<?php echo  $button->page ?>">
                         <?= $button->text ?>
                     </a>
                 </li>
-            <?php else : ?>
+            <?php }else { ?>
                 <li>
-                    <span style="color:#555555"><?= $button->text ?></span>
+                    <span style="color:#555555"><?php echo  $button->text ?></span>
                 </li>
-
-            <?php endif;
-        endforeach;
-        ?>
+            <?php }} ?>
     </ul>
 </nav>

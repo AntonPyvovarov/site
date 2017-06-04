@@ -5,7 +5,7 @@ namespace Controller;
 
 use Lib\Pagination;
 use Model\CategoryModel;
-use Model\NewsModel;
+
  class BaseController
 {
 
@@ -16,6 +16,7 @@ use Model\NewsModel;
     protected $user;
     protected $itemPerPage;
     protected $view;
+
 
     /**
      * @param $templateName
@@ -61,12 +62,12 @@ use Model\NewsModel;
     }
 
      /**
-      * get news by $id
+      * get news by $id with pagination
       */
      public function category($id)
      {
          $page=isset($_GET['page'])? intval($_GET['page']):1;
-         $news = new NewsModel();
+         $news = $this->getModel();
          $this->data['page']=new Pagination
          ([
              'itemsCount' => $news->getCountNews ( $id ),
@@ -77,10 +78,17 @@ use Model\NewsModel;
          if (!$getNews) {
              $this->render404();
          }
-         $this->data['category'] = $getNews;
+         $this->data['news'] = $getNews;
          $this->render($this->view);
      }
-}
+
+
+     public function getModel()
+     {
+         return  ;
+     }
+
+ }
 
 
 

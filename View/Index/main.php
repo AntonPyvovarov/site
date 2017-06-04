@@ -49,12 +49,13 @@
 <br><br><br><br>
 <?php if ($data['mainNews']) {
     foreach ($data['mainNews'] as $news) { ?>
-        <div class="col-xs-6 col-lg-4">
+        <div class="col-xs-6 col-lg-4 mainNews">
             <img src="<?php echo $news['photo']  ?>" class="img-responsive " alt="Responsive image">
             <h2><?php echo $news['title'] ?></h2>
             <p><?php echo $news['short_content'] ?> </p>
-            <p><a class="btn btn-default" href="News/item/<?php echo $news['id'] ?>" role="button">Проглянути деталі
+            <p><a class="btn btn-success" href="News/item/<?php echo $news['id'] ?>" role="button">Проглянути деталі
                     &raquo;</a></p>
+            <br><br>
         </div><!--/.col-xs-6.col-lg-4-->
     <?php }
 } ?>

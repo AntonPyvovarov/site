@@ -1,9 +1,8 @@
 <div class=" row ">
     <div class="page-header">
-        <h1><?php echo $data['news'][0]['category'] ?>
-
-        </h1>
+        <h1><?php echo $data['news'][0]['category'] ?></h1>
     </div>
+    <br>
     <?php if ($data['news']) {
         foreach ($data['news'] as $news) { ?>
             <div class="col-sm-6 col-md-4">
@@ -32,7 +31,7 @@
 <?php foreach ($data['page']->buttons as $button) :
     if ($button->isActive) : ?>
         <li>
-            <a href="News/category/<?= $data['category'][0]['category_id'] ?>?page=<?= $button->page ?>">
+            <a href="News/category/<?= $data['news'][0]['category_id'] ?>?page=<?= $button->page ?>">
                 <?= $button->text ?>
             </a>
         </li>
@@ -51,20 +50,4 @@ endforeach;
 
 
 
-<!---->
-<!--<div class="table-responsive">-->
-<!--    <table class="table">-->
-<!--        --><?php //foreach ($data['category'] as $k => $news) { ?>
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <p><a href="Category/item/--><?php //echo $news['id'] ?><!--"--><?php //echo $news ['title'] ?><!--</a></p><br>-->
-<!--                    --><?php //echo $news ['category_id'] ?>
-<!--                    --><?php //echo $news ['short_content'] ?><!--<br>-->
-<!--                </td>-->
-<!---->
-<!--            </tr>-->
-<!--        --><?php //} ?>
-<!--    </table>-->
-<!--</div>-->
-<!---->
 

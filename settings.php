@@ -8,3 +8,4 @@ define('DB_PASS','');
 define('DB_NAME','newSite');
 define('CHARSET','utf8');
 define('SALT','Tyu76Tsbc48PBr,e@@RE43');
+

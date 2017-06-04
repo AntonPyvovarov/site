@@ -5,24 +5,25 @@ namespace Controller;
 
 
 use Common\Session;
-
 use Model\CommentModel;
 use Model\NewsModel;
 
 class NewsController extends BaseController
 {
-    protected $model;
     protected $name = 'News';
     protected $itemPerPage=6;
     protected $view='news';
 
+    public function getModel()
+    {
+        return new NewsModel() ;
+    }
 
 
     public function item($id)
     {
         $id=intval($id);
-        $news=new NewsModel();
-        $item = $news->item($id);
+        $item = $this->model->item($id);
         $comment=new CommentModel();
         if (!$item) {
             $this->render404();

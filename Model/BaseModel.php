@@ -19,14 +19,13 @@ class BaseModel
     {
         $this->db = new DB();
     }
-        //get all list
+
     /**
      * @return array|bool|\mysqli_result
      */
     public function all()
     {
         $result = $this->db->query("SELECT * FROM  $this->table");
-
         return $result;
     }
 
@@ -34,7 +33,6 @@ class BaseModel
 
     public function item($id)
     {
-
         $result = $this->db->query("SELECT * FROM $this->table WHERE  id= ".$id);
         if (!$result){
             return false ;
@@ -56,5 +54,38 @@ class BaseModel
         return $result[0]['count'];
 
     }
+    public function getNews($categoryId = false, $page)
+    {
+        if ($categoryId) {
+            $page = intval($page);
+
+            $offset = ($page - 1) * $this->itemsPerPage;
+            $result = $this->db->query("SELECT `news`.`id`,`news`.`title`, `news`.`photo`,`news`.`date`, `news`.`raiting`,
+                                              `category_id`, `category`.`category` 
+                                            FROM $this->table 
+                                            LEFT JOIN `category` 
+                                            ON `news`.`category_id`=`category`.`id` 
+                                            WHERE `status`=1 
+                                            AND `category_id`=$categoryId 
+                                            ORDER BY `date` DESC
+                                            LIMIT $this->itemsPerPage  
+                                            OFFSET ".$offset);
+
+
+        }
+
+        return $result;
+
+    }
+
+    public function delete($id){
+
+        $id=intval($id);
+        $result=$this->db->query("DELETE FROM $this->table WHERE `id`=$id LIMIT 1");
+        return $result;
+
+    }
+
+
 }
 

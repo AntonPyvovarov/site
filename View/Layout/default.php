@@ -86,6 +86,7 @@
     <div class="container-fluid">
         <div class="starter-template">
             <div class="row ">
+
                 <!--        Left block    advertising-->
                 <div class="col-xs-2  col-md-2">
                     <p>Left side</p>
@@ -130,6 +131,7 @@
 <link rel="stylesheet" href="View/Bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="View/Bootstrap/css/bootstrap-social.css">
 <link rel="stylesheet" href="View/Bootstrap/css/font-awesome.css">
+<link rel="stylesheet" href="View/Bootstrap/css/main.css">
 
 <!-- Optional theme -->
 <!--<link rel="stylesheet" href="/View/Bootstrap/css/bootstrap-theme.css">-->
