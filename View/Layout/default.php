@@ -31,7 +31,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Категорії
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <?php foreach ($data['menu'] as $category) { ?>
+                            <?php
+                            foreach ($data['menu'] as $category) { ?>
                                 <li>
                                     <a href="News/category/<?php echo $category['id'] ?>"><?php echo $category['category'] ?></a>
                                 </li>
@@ -41,9 +42,9 @@
                     </li>
                     <li><a href=" Index/contact/">Contact</a></li>
                 </ul>
-                <form class="navbar-form navbar-left" role="search">
+                <form class="navbar-form navbar-left" role="search" method="POST">
                     <div class="form-group">
-                        <input class="form-control" placeholder="Search" type="text">
+                        <input class="form-control" placeholder="Search" name="search" type="text">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
@@ -101,7 +102,7 @@
                     <!--     END        show content-->
                 </div>
                 <!--        right    advertising block-->
-                <div class="col-xs-2 col-md-2">
+                <div class=" col-md-2">
                     <p>Right side</p>
                 </div>
                 <!--            end right block-->

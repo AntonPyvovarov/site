@@ -5,11 +5,13 @@ namespace Controller;
 
 use Lib\Pagination;
 use Model\CategoryModel;
+use Model\NewsModel;
+use Model\TagModel;
 
- class BaseController
+class BaseController
 {
 
-    protected $name;
+    protected $name='News';
     protected $layout = 'default';
     protected $data;
     protected $message;
@@ -25,8 +27,9 @@ use Model\CategoryModel;
     {
         $data = $this->data;
         $message = $this->message;
-        $menu = new CategoryModel();
-        $data['menu'] = $menu->all();
+
+        $data['menu']=self::getCat();
+        self::search();
         ob_start();
         //динамический контент
         $render = SITE_DIR . DS . 'View' . DS . $this->name . DS . $templateName . '.php';
@@ -36,6 +39,14 @@ use Model\CategoryModel;
         $content = ob_get_clean();
         include SITE_DIR . DS . 'View' . DS . 'Layout' . DS . $this->layout . '.php';
     }
+
+        public function getCat()
+        {
+            $menu = new CategoryModel();
+            $menu = $menu->all();
+            return $menu;
+
+        }
 
     /**
      * show error page
@@ -87,6 +98,24 @@ use Model\CategoryModel;
      {
          return  ;
      }
+
+     public function  getTags()
+     {
+         $tags=new TagModel();
+         $this->data['tags']=$tags->all();
+     }
+
+    public function search()
+    {
+        print_r($_POST);
+        if(isset($_POST)&& isset($_POST['search'])){
+            $text=self::protect($_POST['search']);
+            $search=new newsModel();
+            $data['search']=$search->search($text);
+            $this->render('search');
+            return;
+        }
+        }
 
  }
 

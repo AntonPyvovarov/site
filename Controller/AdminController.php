@@ -5,6 +5,7 @@ namespace Controller {
 
     use Model\AdminCatModel;
     use Model\AdminNewsModel;
+    use Model\NewsModel;
 
 
     class AdminController extends BaseController
@@ -13,6 +14,11 @@ namespace Controller {
         protected $itemPerPage = 10;
         protected $view = 'adminNews';
 
+        public $title;
+        public $short_content;
+        public $text;
+        public $category_id;
+        public $tags_id;
 
         public function getModel ()
         {
@@ -72,6 +78,29 @@ namespace Controller {
 
         }
 
+        public function createNews ()
+        {  echo '<pre>';
+            print_r ( $_POST ).'<br>';
+            print_r ( $_FILES );
+            echo '</pre>';
+            if (isset( $_POST['title'] )
+                && isset( $_POST['short_content'] )
+                && isset( $_POST['text'] )
+                && isset( $_POST['category_id'] )
+                && isset( $_POST['tags_id'] ))
+            {
+                $news=new NewsModel();
+                $news->title=self::protect($_POST['title']);
+                $news->title=self::protect($_POST['short_content']);
+                $news->title=self::protect($_POST['text'] );
+                $news->title=self::protect($_POST['category_id']);
+                $news->title=self::protect($_POST['tags_id'] );
+                $news=$news->setNews();
+            }
+
+            self::getTags ();
+            $this->render ( 'createItem' );
+        }
 
         public function deleteNews ()
         {
@@ -85,6 +114,13 @@ namespace Controller {
         public function updateNews ()
         {
 
+        }
+
+        public function serch()
+        {
+            if(isset($_POST)&& $_POST['search']){
+
+            }
         }
     }
 

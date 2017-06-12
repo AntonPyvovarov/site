@@ -9,8 +9,12 @@ protected $connection;
 
 public function __construct()
 {
-    $this->connection=new \mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
-    $this->query('SET NAMES UTF8');
+    if (!$this->connection) {
+        $this->connection = new \mysqli( DB_HOST, DB_USER, DB_PASS, DB_NAME );
+        $this->query ( 'SET NAMES UTF8' );
+    }else{
+        return $this->connection;
+    }
 }
     /**
      * @param $sql

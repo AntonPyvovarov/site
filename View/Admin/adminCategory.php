@@ -14,7 +14,7 @@
         <tr>
             <td><?php echo $category['id'] ?></td>
             <td>
-                <a class="" href="Admin/category/<?php echo $category['id'] ?>" role="button">
+                <a class="" href="Admin/news/<?php echo $category['id'] ?>" role="button">
                     <?php echo $category['category'] ?>
                 </a>
             </td>
@@ -39,7 +39,7 @@
             <input name="category" type="text" class="form-control " id="category" placeholder="Введіть Категорію">
         </div>
         <div>
-            <button type="submit" class=" btn btn-success pull">Submit</button>
+            <button type="submit" class=" btn btn-success ">Submit</button>
         </div>
     </div>
 </form>

@@ -8,6 +8,7 @@ use Common\Session;
 use Model\CommentModel;
 use Model\NewsModel;
 
+
 class NewsController extends BaseController
 {
     protected $name = 'News';
@@ -23,7 +24,8 @@ class NewsController extends BaseController
     public function item($id)
     {
         $id=intval($id);
-        $item = $this->model->item($id);
+        $item=new newsModel();
+        $item = $item->item($id);
         $comment=new CommentModel();
         if (!$item) {
             $this->render404();
@@ -47,6 +49,9 @@ class NewsController extends BaseController
                 $comment->setComment ( $message, $id, $userId );
             }
         }
+
+
     }
+
 
 }

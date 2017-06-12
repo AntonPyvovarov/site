@@ -12,9 +12,11 @@ class BaseModel
     protected $db;
     protected $table;
     protected $itemsPerPage ;
+
     /**
      * BaseModel constructor.
      */
+
     public function __construct()
     {
         $this->db = new DB();
