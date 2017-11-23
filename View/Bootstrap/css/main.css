@@ -2,3 +2,32 @@
 {
     min-height: 400px;
 }
+
+body {
+    padding-top: 50px;
+}
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.newsItem{
+    height: 100px;
+}
+.img-carousel  {
+    height: 400px;
+}
+.footer-template{
+    padding: 40px 15px;
+    text-align: center;
+}
+.text-comment
+{
+    margin-bottom:10px;
+}
+.comment-name{
+    color:#2b669a;
+}
+.comment-date{
+    color: darkorchid;
+}

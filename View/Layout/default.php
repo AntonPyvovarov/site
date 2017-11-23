@@ -44,7 +44,7 @@
                 </ul>
                 <form class="navbar-form navbar-left" role="search" method="POST">
                     <div class="form-group">
-                        <input class="form-control" placeholder="Search" name="search" type="text">
+                        <input class="form-control" placeholder="search" name="search" type="text">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
@@ -82,34 +82,75 @@
     <!-- navbar-->
 
 
-    <!--Show message-->
-
     <div class="container-fluid">
         <div class="starter-template">
-            <div class="row ">
+            <!--        Left side-->
+            <div class="row  col-sm-9 col-md-9 col-lg-9">
 
-                <!--        Left block    advertising-->
-                <div class="col-xs-2  col-md-2">
-                    <p>Left side</p>
 
-                </div>
-                <!--            End left block advertising-->
+                <div class="col-sm-12 col-md-offset-1 col-md-11">
+                    <!--  start search      -->
+                    <?php if (isset( $this->data['search'] )) { ?>
+                        <h1>this is search</h1>
+                        <div class=" row ">
 
-                <div class="col-md-8">
+                            <br>
+                            <?php if ($this->data['search']) {
+                                foreach ($this->data['search'] as $news) { ?>
+                                    <div class="col-sm-6 col-md-4">
+                                        <div class="thumbnail ">
+                                            <p><?php echo $news['id'] ?></p>
+                                            <div>
+                                                <img src="http://localhost/mySite/View/img/<?php echo $news ['photo'] ?>"
+                                                     class=" photo-img-responsive img-responsive center-block"
+                                                     alt="Чутливе зображення">
+                                            </div>
 
-                    <!--                show content-->
-                    <div><?php echo $content ?></div>
+                                            <div class="caption">
+                                                <h3><?php echo $news ['title'] ?></h3>
+
+                                                <p><a href="News/item/<?php echo $news['id'] ?>" class="btn btn-primary"
+                                                      role="button">Перейти</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php }
+                            } ?>
+                        </div>
+                        <!-- End search-->
+
+                    <?php } else { ?>
+                        <div><?php echo $content ?></div>
+                    <?php } ?>
+
                     <!--     END        show content-->
                 </div>
-                <!--        right    advertising block-->
-                <div class=" col-md-2">
-                    <p>Right side</p>
-                </div>
-                <!--            end right block-->
             </div>
+            <!--        right    side-->
+            <div class=" col-sm-3 col-md-3 col-lg-3">
+                <h2>Right side</h2>
+
+                <?php if ($data['mainNews']) {
+                    foreach ($data['mainNews'] as $news) { ?>
+
+                        <div class="    ">
+                            <img src="http://localhost/mySite/View/img/<?php echo $news['photo'] ?>"
+                                 class="img-responsive " alt="Responsive image">
+                            <h2><?php echo $news['title'] ?></h2>
+                            <p><?php echo $news['short_content'] ?> </p>
+                            <p><a class="btn btn-success" href="News/item/<?php echo $news['id'] ?>"
+                                  role="button">Проглянути деталі
+                                    &raquo;</a></p>
+                            <br>
+                        </div>
+
+                    <?php }
+                } ?>
+            </div>
+
+
         </div>
     </div>
-
     <div class="starter-template"
 
     <footer class="footer panel-footer navbar-fixed-bottom">
@@ -127,7 +168,8 @@
         </div>
     </footer>
 </div>
-<!--End show message-->
+
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="View/Bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="View/Bootstrap/css/bootstrap-social.css">
@@ -136,7 +178,7 @@
 
 <!-- Optional theme -->
 <!--<link rel="stylesheet" href="/View/Bootstrap/css/bootstrap-theme.css">-->
-<!-- Latest compiled and minified JavaScript -->
+<!--  JavaScript -->
 <script src="View/Bootstrap/js/bootstrap.js"></script>
 
 </body>

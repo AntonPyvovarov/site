@@ -25,10 +25,13 @@ class BaseController
      */
     protected function render($templateName)
     {
+        self::search();
+        self::getCat();
+
         $data = $this->data;
         $message = $this->message;
 
-        $data['menu']=self::getCat();
+
         self::search();
         ob_start();
         //динамический контент
@@ -105,17 +108,15 @@ class BaseController
          $this->data['tags']=$tags->all();
      }
 
-    public function search()
+    public function search ()
     {
-        print_r($_POST);
-        if(isset($_POST)&& isset($_POST['search'])){
-            $text=self::protect($_POST['search']);
-            $search=new newsModel();
-            $data['search']=$search->search($text);
-            $this->render('search');
-            return;
+        if (isset( $_POST['search'] )) {
+            print_r ( $_POST );
+            $text = self::protect ( $_POST['search'] );
+            $search = new newsModel();
+            $this->data['search'] = $search->search ( $text );
         }
-        }
+    }
 
  }
 

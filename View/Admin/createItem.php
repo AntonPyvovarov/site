@@ -18,18 +18,11 @@
                     <label for="Category">Select Category</label>
                     <select class="form-control" name="category_id">
                         <?php foreach ($data['menu'] as $category){ ?>
-                        <option value="<?php echo $category['id'] ?>"><?php echo $category['category'] ?></option>
+                            <option value="<?php echo $category['id'] ?>"><?php echo $category['category'] ?></option>
                         <?php } ?>
                     </select>
                 </div>
-                <div>
-                    <label for="tags">Select Tags</label>
-                    <select class="form-control " name="tags_id">
-                        <?php foreach ($data['tags'] as $tags){ ?>
-                            <option value="<?php echo $tags['id'] ?>"><?php echo $tags['name'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
+
 
                 <div class="form-group">
                     <label for="photo"> Photo </label>

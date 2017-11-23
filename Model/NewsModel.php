@@ -59,11 +59,18 @@ class newsModel extends BaseModel
        return $result;
     }
 
-    public function search($search)
+    public function search($text)
     {
-       $search=$this->db->escape($search);
-       $result=$this->db->query("SELECT FROM $this->table WHERE `title` LIKE '$search%'");
-       return $result;
+        $text=$this->db->escape($text);
+        $result=$this->db->query("SELECT * FROM $this->table WHERE `title` LIKE '%$text%'");
+        return $result;
+    }
+
+    public function getLastId()
+    {
+        $result=$this->db->query ("SELECT `id` FROM $this->table ORDER BY  `date` DESC LIMIT 1 ");
+        var_dump ( $result[0]['id']);
+        return $result;
     }
 
 }

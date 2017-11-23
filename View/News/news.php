@@ -5,10 +5,10 @@
     <br>
     <?php if ($data['news']) {
         foreach ($data['news'] as $news) { ?>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-6">
                 <div class="thumbnail ">
                     <p><?php echo $news['id'] ?></p>
-                    <div><img src="<?php echo $news ['photo'] ?>"
+                    <div><img src="http://localhost/mySite/View/img/<?php echo $news ['photo'] ?>"
                               class=" photo-img-responsive img-responsive center-block" alt="Чутливе зображення">
                     </div>
 
@@ -28,21 +28,21 @@
 <hr/>
 <nav>
     <ul class="pagination">
-<?php foreach ($data['page']->buttons as $button) :
-    if ($button->isActive) : ?>
-        <li>
-            <a href="News/category/<?= $data['news'][0]['category_id'] ?>?page=<?= $button->page ?>">
-                <?= $button->text ?>
-            </a>
-        </li>
-    <?php else : ?>
-       <li>
-           <span style="color:#555555"><?= $button->text ?></span>
-       </li>
+        <?php foreach ($data['page']->buttons as $button) :
+            if ($button->isActive) : ?>
+                <li>
+                    <a href="News/category/<?= $data['news'][0]['category_id'] ?>?page=<?= $button->page ?>">
+                        <?= $button->text ?>
+                    </a>
+                </li>
+            <?php else : ?>
+                <li>
+                    <span  style="color:#555555"><?= $button->text ?></span>
+                </li>
 
-    <?php endif;
-endforeach;
-?>
+            <?php endif;
+        endforeach;
+        ?>
     </ul>
 </nav>
 <!--End Pagination-->

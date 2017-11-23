@@ -13,7 +13,6 @@ namespace Controller {
         protected $name = 'Admin';
         protected $itemPerPage = 10;
         protected $view = 'adminNews';
-
         public $title;
         public $short_content;
         public $text;
@@ -79,26 +78,23 @@ namespace Controller {
         }
 
         public function createNews ()
-        {  echo '<pre>';
-            print_r ( $_POST ).'<br>';
-            print_r ( $_FILES );
-            echo '</pre>';
-            if (isset( $_POST['title'] )
-                && isset( $_POST['short_content'] )
-                && isset( $_POST['text'] )
-                && isset( $_POST['category_id'] )
-                && isset( $_POST['tags_id'] ))
-            {
-                $news=new NewsModel();
-                $news->title=self::protect($_POST['title']);
-                $news->title=self::protect($_POST['short_content']);
-                $news->title=self::protect($_POST['text'] );
-                $news->title=self::protect($_POST['category_id']);
-                $news->title=self::protect($_POST['tags_id'] );
-                $news=$news->setNews();
+        {
+            if($_POST) {
+                if ($_POST['title'] && $_POST['short_content']
+                    && $_POST['text'] && $_POST['category_id']
+                ) {
+                    $news = new NewsModel();
+                    $title = self::protect ( $_POST['title'] );
+                    $short_content = self::protect ( $_POST['short_content'] );
+                    $text = self::protect ( $_POST['text'] );
+                    $category_id = intval ( $_POST['category_id'] );
+                    $news->setNews ( $title, $short_content, $text, $category_id );
+                    $this->message = "Ви добавили новину на сайт";
+                    header (  'Location: /mySite/Admin/index' );
+                } else {
+                    $this->message = "Новину не добавлено";
+                }
             }
-
-            self::getTags ();
             $this->render ( 'createItem' );
         }
 
@@ -116,12 +112,7 @@ namespace Controller {
 
         }
 
-        public function serch()
-        {
-            if(isset($_POST)&& $_POST['search']){
 
-            }
-        }
     }
 
 }

@@ -1,6 +1,5 @@
 <h1>Welcome to <?php echo SITE_NAME ?> </h1>
-<!-- Carousel
-   ================================================== -->
+<!-- Carousel ================================================== -->
 
 
 <div id="myCarousel" class="carousel slide " data-ride="carousel">
@@ -20,8 +19,8 @@
                 <div class="item <?php if ($counter <= 1) {
                     echo " active";
                 } ?> ">
-                    <div class=" img-responsive">
-                        <img src="<?php echo $carousel['photo'] ?>" alt="slide">
+                    <div class=" img-responsive  img-carousel ">
+                        <img class="photo-carousel" src="http://localhost/mySite/View/img/<?php echo $carousel['photo'] ?>" alt="slide">
                     </div>
                     <div class="container">
                         <div class="carousel-caption">
@@ -49,8 +48,9 @@
 <br><br><br><br>
 <?php if ($data['mainNews']) {
     foreach ($data['mainNews'] as $news) { ?>
-        <div class="col-xs-6 col-lg-4 mainNews">
-            <img src="<?php echo $news['photo']  ?>" class="img-responsive " alt="Responsive image">
+
+        <div class="col-sm-6 col-md-6   col-lg-4 mainNews">
+            <img src="http://localhost/mySite/View/img/<?php echo $news['photo']  ?>" class="img-responsive " alt="Responsive image">
             <h2><?php echo $news['title'] ?></h2>
             <p><?php echo $news['short_content'] ?> </p>
             <p><a class="btn btn-success" href="News/item/<?php echo $news['id'] ?>" role="button">Проглянути деталі

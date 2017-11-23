@@ -26,7 +26,7 @@ class UserController extends BaseController
     {
 
         if ($this->user->checkUser ()) {
-            header ( 'Location: /mySite/index' );
+            header ( 'Location: /site/index' );
             return;
         }
         if ($_POST && $_POST['name'] && strlen ( $_POST['name'] ) > 2 &&
@@ -46,7 +46,7 @@ class UserController extends BaseController
                 $this->user->userName = $name;
                 $this->user->pass = md5 ( $pass . SALT );
                 $this->user->registration ();
-                header ( 'Location: /mySite/index' );
+                header ( 'Location: /site/index' );
             }
         }
         $this->render ( 'register' );
@@ -56,7 +56,7 @@ class UserController extends BaseController
     {
 
         if ($this->user->checkUser ()) {
-            header ( 'Location: /mySite/index' );
+            header ( 'Location: /site/index' );
             return;
         }
         if ($_POST && $_POST['email'] && $_POST['pass']) {
@@ -68,7 +68,7 @@ class UserController extends BaseController
                 Session::set ( 'isAdmin', $res['is_admin'] );
                 Session::set ( 'user', $res['name'] );
                 if ($res['is_admin']) {
-                    header ( 'Location: /mySite/Admin/index' );
+                    header ( 'Location: /site/Admin/index' );
                     return;
                 } else {
                     header ( "Location:". $_SERVER['HTTP_REFERER'] );
@@ -83,7 +83,7 @@ class UserController extends BaseController
     public static function logOut ()
     {
         Session::destroy ();
-        header ( 'Location: /mySite/index' );
+        header ( 'Location: /site/index' );
     }
 
 
