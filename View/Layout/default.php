@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="http://getbootstrap.com/examples/starter-template/starter-template.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <base href="/mySite/">
+    <base href="/site/">
 </head>
 <body>
 <div>

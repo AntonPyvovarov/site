@@ -8,6 +8,4 @@ class TagModel extends BaseModel
 {
     protected $table="tag";
 
-
-
 }
